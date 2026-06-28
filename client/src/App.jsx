@@ -19,6 +19,8 @@ import {
 import enTranslations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 
+const DEMO_SHOP_DOMAIN = "announcement-banner-test-hxju0hhe.myshopify.com";
+
 function getQueryParam(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
@@ -90,6 +92,43 @@ function syncBadge(status) {
   return <Badge tone="attention">Pending</Badge>;
 }
 
+function DirectAccessPage() {
+  return (
+    <AppProvider i18n={enTranslations}>
+      <Page title="Announcement Banner">
+        <Layout>
+          <Layout.Section>
+            <Card>
+              <BlockStack gap="400">
+                <InlineStack gap="200" blockAlign="center">
+                  <Badge tone="success">Deployed</Badge>
+                  <Text as="p" tone="subdued">
+                    Render service is live.
+                  </Text>
+                </InlineStack>
+
+                <Text as="p">
+                  Open the app from Shopify Admin to save announcement text.
+                </Text>
+
+                <InlineStack gap="300">
+                  <Button
+                    variant="primary"
+                    url={`/api/auth?shop=${DEMO_SHOP_DOMAIN}`}
+                  >
+                    Open Shopify app
+                  </Button>
+                  <Button url="/healthz">Health check</Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+          </Layout.Section>
+        </Layout>
+      </Page>
+    </AppProvider>
+  );
+}
+
 export default function App() {
   const [announcementText, setAnnouncementText] = useState("");
   const [history, setHistory] = useState([]);
@@ -98,6 +137,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState(null);
+  const hasShopifyHost = Boolean(getQueryParam("host"));
   const shopifyFetch = useMemo(() => createShopifyFetch(), []);
 
   const themeEditorUrl = useMemo(() => {
@@ -149,14 +189,20 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadAnnouncement();
-  }, []);
+    if (hasShopifyHost) {
+      loadAnnouncement();
+    }
+  }, [hasShopifyHost]);
 
   const rows = history.map((record) => [
     formatDate(record.savedAt),
     record.text,
     syncBadge(record.syncStatus)
   ]);
+
+  if (!hasShopifyHost) {
+    return <DirectAccessPage />;
+  }
 
   return (
     <AppProvider i18n={enTranslations}>

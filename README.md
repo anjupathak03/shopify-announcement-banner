@@ -111,23 +111,40 @@ Important notes:
 
 ## Deployment
 
-For Render or similar:
+For Render:
 
-- Build command: `npm install && npm run build`
+- Connect this GitHub repo to a new Render **Web Service**, or use the included `render.yaml` as a Render Blueprint.
+- Build command: `npm ci && npm run build`
 - Start command: `npm start`
-- Environment variables: use `.env.example` as the checklist
+- Health check path: `/healthz`
+- Environment variables:
 
-After deployment, update:
+```bash
+NODE_ENV=production
+SHOPIFY_API_KEY=your-client-id
+SHOPIFY_API_SECRET=your-client-secret
+SHOPIFY_API_VERSION=2026-04
+SCOPES=write_products,read_themes
+HOST=https://your-render-service.onrender.com
+MONGODB_URI=your-mongodb-atlas-connection-string
+MONGODB_DB_NAME=shopify_announcement_banner
+```
+
+Use MongoDB Atlas for the deployed database. Do not upload `.env`; paste these values into Render's environment settings.
+
+After Render gives you the live URL, update:
 
 - `application_url` in `shopify.app.toml`
-- `[auth].redirect_urls`
-- `HOST`
+- `[auth].redirect_urls` to `https://your-render-service.onrender.com/api/auth/callback`
+- `HOST` in Render to the same Render URL
 
 Then run:
 
 ```bash
 shopify app deploy --allow-updates
 ```
+
+Commit and push the `shopify.app.toml` URL change after the Render URL is known.
 
 If the storefront does not show the banner after deployment, re-enable the app embed in the theme editor:
 

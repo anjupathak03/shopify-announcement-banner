@@ -3,15 +3,17 @@ services:
     name: shopify-announcement-banner
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm ci && npm run build
     startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
       - key: SHOPIFY_API_VERSION
         value: 2026-04
       - key: SCOPES
-        value: read_products,write_products,read_themes
+        value: write_products,read_themes
       - key: MONGODB_DB_NAME
         value: shopify_announcement_banner
       - key: SHOPIFY_API_KEY

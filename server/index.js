@@ -21,6 +21,10 @@ app.set("trust proxy", 1);
 app.use(morgan(config.nodeEnv === "production" ? "combined" : "dev"));
 app.use(shopify.cspHeaders());
 
+app.get("/healthz", (_req, res) => {
+  res.status(200).json({ ok: true });
+});
+
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(shopify.config.auth.callbackPath, shopify.auth.callback());
 

@@ -30,11 +30,27 @@ git push -u origin main
 
 ## Render
 
-- Build command: `npm install && npm run build`
+- Create a MongoDB Atlas database for the deployed app.
+- Create a Render **Web Service** from the GitHub repo, or use the included `render.yaml` Blueprint.
+- Build command: `npm ci && npm run build`
 - Start command: `npm start`
-- Add env vars from `.env.example`.
-- Set `HOST` to the Render URL.
-- Update `shopify.app.toml` URLs to the Render URL.
+- Health check path: `/healthz`
+- Add these Render env vars:
+
+```bash
+NODE_ENV=production
+SHOPIFY_API_KEY=your-client-id
+SHOPIFY_API_SECRET=your-client-secret
+SHOPIFY_API_VERSION=2026-04
+SCOPES=write_products,read_themes
+HOST=https://your-render-service.onrender.com
+MONGODB_URI=your-mongodb-atlas-connection-string
+MONGODB_DB_NAME=shopify_announcement_banner
+```
+
+- Update `shopify.app.toml` `application_url` to the Render URL.
+- Update `shopify.app.toml` redirect URL to `https://your-render-service.onrender.com/api/auth/callback`.
+- Commit and push that Render URL change.
 - Run `shopify app deploy --allow-updates`.
 
 ## Video

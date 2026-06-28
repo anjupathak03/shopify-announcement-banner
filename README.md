@@ -7,9 +7,9 @@ MERN-style Shopify app for managing a store-wide announcement banner. The embedd
 - Public GitHub repository: `https://github.com/anjupathak03/shopify-announcement-banner`
 - Deployed Render app: `https://shopify-announcement-banner-1rs3.onrender.com`
 - Health check: `https://shopify-announcement-banner-1rs3.onrender.com/healthz`
-- Shopify Admin app: `https://admin.shopify.com/store/announcement-banner-test-hxju0hhe/apps/announcement-banner-anju`
+- Shopify Admin app, private dev-store access only: `https://admin.shopify.com/store/announcement-banner-test-hxju0hhe/apps/announcement-banner-anju`
 
-The Render URL hosts the production web app and backend. The editable dashboard must be opened from Shopify Admin because Shopify provides the authenticated shop session there.
+The Render URL hosts the production web app and backend. The editable dashboard must be opened from Shopify Admin because Shopify provides the authenticated shop session there. The Shopify Admin URL is not public; only the store owner, staff, or invited collaborators with access to this development store can open it.
 
 ## What This Does
 

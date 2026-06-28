@@ -1,5 +1,7 @@
-name = "Announcement Banner"
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
 client_id = "aad0baf4ac2bf7036cbee6123726a4d1"
+name = "Announcement Banner"
 application_url = "https://shopify-announcement-banner-1rs3.onrender.com"
 embedded = true
 handle = "announcement-banner-anju"
@@ -7,17 +9,18 @@ handle = "announcement-banner-anju"
 [build]
 automatically_update_urls_on_dev = true
 
+[webhooks]
+api_version = "2026-04"
+
+  [[webhooks.subscriptions]]
+  uri = "/api/webhooks"
+  topics = [ "app/uninstalled" ]
+
 [access_scopes]
-scopes = "write_products,read_themes"
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_themes,write_products"
 
 [auth]
 redirect_urls = [
   "https://shopify-announcement-banner-1rs3.onrender.com/api/auth/callback"
 ]
-
-[webhooks]
-api_version = "2026-04"
-
-[[webhooks.subscriptions]]
-topics = [ "app/uninstalled" ]
-uri = "/api/webhooks"

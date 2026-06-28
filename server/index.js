@@ -12,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const clientDistPath = path.join(__dirname, "..", "client", "dist");
 const clientIndexPath = path.join(clientDistPath, "index.html");
+const shopifyAdminFrameAncestors =
+  "frame-ancestors https://admin.shopify.com https://*.myshopify.com https://*.shopify.com https://*.spin.dev https://admin.myshopify.io https://admin.shop.dev;";
 
 await connectMongo();
 
@@ -20,6 +22,14 @@ const app = express();
 app.set("trust proxy", 1);
 app.use(morgan(config.nodeEnv === "production" ? "combined" : "dev"));
 app.use(shopify.cspHeaders());
+
+app.use((req, res, next) => {
+  if (req.method === "GET" && req.path !== "/healthz" && !req.path.startsWith("/api")) {
+    res.setHeader("Content-Security-Policy", shopifyAdminFrameAncestors);
+  }
+
+  next();
+});
 
 app.get("/healthz", (_req, res) => {
   res.status(200).json({ ok: true });

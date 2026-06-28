@@ -19,8 +19,6 @@ import {
 import enTranslations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 
-const DEMO_SHOP_DOMAIN = "announcement-banner-test-hxju0hhe.myshopify.com";
-
 function getQueryParam(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
@@ -108,17 +106,15 @@ function DirectAccessPage() {
                 </InlineStack>
 
                 <Text as="p">
-                  Open the app from Shopify Admin to save announcement text.
+                  This hosted app is used from Shopify Admin after the Shopify app is
+                  installed on a store. The public URL confirms the Render deployment;
+                  the authenticated dashboard is opened from Shopify Admin.
                 </Text>
 
                 <InlineStack gap="300">
-                  <Button
-                    variant="primary"
-                    url={`/api/auth?shop=${DEMO_SHOP_DOMAIN}`}
-                  >
-                    Open Shopify app
+                  <Button variant="primary" url="/healthz">
+                    Health check
                   </Button>
-                  <Button url="/healthz">Health check</Button>
                 </InlineStack>
               </BlockStack>
             </Card>

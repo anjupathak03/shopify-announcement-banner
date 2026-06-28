@@ -4,6 +4,29 @@ MERN-style Shopify app for managing a store-wide announcement banner. The embedd
 
 Deployed app: https://shopify-announcement-banner-1rs3.onrender.com
 
+## What This Does
+
+This app lets a Shopify merchant manage a store-wide announcement banner from inside Shopify Admin.
+
+Flow:
+
+1. Merchant types announcement text in the embedded Shopify Admin app.
+2. Express saves the text and timestamp in MongoDB Atlas for audit history.
+3. Express syncs the latest text to a Shopify shop metafield.
+4. The theme app extension app embed reads that shop metafield in Liquid.
+5. The storefront displays the saved announcement banner on every page.
+
+The Render URL hosts the production web app and backend. The editable dashboard is used from Shopify Admin because Shopify provides the authenticated shop session there.
+
+Demo path:
+
+1. Open the app from Shopify Admin: **Apps > Announcement Banner**.
+2. Type a message such as `Sale 50% Off`.
+3. Click **Save** and show **Announcement saved and synced**.
+4. Show MongoDB Atlas `shopify_announcement_banner > announcements`.
+5. Open **Online Store > Themes > Customize > App embeds > Announcement Banner**.
+6. Show the same message rendering on the storefront banner.
+
 
 
 https://github.com/user-attachments/assets/fc204820-f01e-47d2-aa44-90a67f601005
@@ -116,5 +139,4 @@ Important notes:
 - This app is enabled from **App embeds > Announcement Banner**.
 - If the app embed was enabled before a new extension version was deployed, toggle the app embed off, save, toggle it on, and save again.
 - For the main theme, deploy/release the theme app extension with `shopify app deploy --allow-updates`. The local `shopify app dev` preview can use a separate development host theme.
-
 

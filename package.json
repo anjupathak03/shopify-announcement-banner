@@ -1,0 +1,37 @@
+{
+  "name": "shopify-announcement-banner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "shopify": "shopify",
+    "dev": "concurrently -n server,client -c cyan,magenta \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:shopify": "shopify app dev",
+    "dev:server": "nodemon server/index.js",
+    "dev:shopify:server": "npm run build && npm run dev:server",
+    "dev:client": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@shopify/app-bridge": "^3.7.11",
+    "@shopify/polaris": "^13.9.5",
+    "@shopify/shopify-api": "^13.1.0",
+    "@shopify/shopify-app-express": "^7.0.1",
+    "@shopify/shopify-app-session-storage-mongodb": "^6.0.1",
+    "@vitejs/plugin-react": "^5.1.2",
+    "concurrently": "^9.2.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1",
+    "morgan": "^1.10.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^7.3.0"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^4.3.0",
+    "nodemon": "^3.1.11"
+  }
+}

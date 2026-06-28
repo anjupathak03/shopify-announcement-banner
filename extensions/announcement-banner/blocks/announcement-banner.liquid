@@ -1,0 +1,37 @@
+{% assign announcement = shop.metafields.my_app.announcement.value | strip %}
+
+{% if announcement != blank %}
+  <div
+    class="my-app-announcement"
+    role="status"
+    aria-live="polite"
+    style="
+      --my-app-announcement-bg: {{ block.settings.background }};
+      --my-app-announcement-color: {{ block.settings.text_color }};
+    "
+  >
+    <span>{{ announcement | escape }}</span>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Banner",
+  "target": "body",
+  "stylesheet": "announcement-banner.css",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#111827"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}

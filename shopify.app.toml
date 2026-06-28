@@ -1,0 +1,23 @@
+name = "Announcement Banner"
+client_id = "aad0baf4ac2bf7036cbee6123726a4d1"
+application_url = "https://example.com"
+embedded = true
+handle = "announcement-banner-anju"
+
+[build]
+automatically_update_urls_on_dev = true
+
+[access_scopes]
+scopes = "write_products,read_themes"
+
+[auth]
+redirect_urls = [
+  "https://example.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2026-04"
+
+[[webhooks.subscriptions]]
+topics = [ "app/uninstalled" ]
+uri = "/api/webhooks"

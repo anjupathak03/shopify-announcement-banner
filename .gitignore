@@ -6,5 +6,6 @@ node_modules/
 dist/
 client/dist/
 data/
+docs/
 npm-debug.log*
 .DS_Store

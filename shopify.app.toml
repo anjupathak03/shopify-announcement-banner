@@ -1,6 +1,6 @@
 name = "Announcement Banner"
 client_id = "aad0baf4ac2bf7036cbee6123726a4d1"
-application_url = "https://example.com"
+application_url = "https://shopify-announcement-banner-1rs3.onrender.com"
 embedded = true
 handle = "announcement-banner-anju"
 
@@ -12,7 +12,7 @@ scopes = "write_products,read_themes"
 
 [auth]
 redirect_urls = [
-  "https://example.com/api/auth/callback"
+  "https://shopify-announcement-banner-1rs3.onrender.com/api/auth/callback"
 ]
 
 [webhooks]

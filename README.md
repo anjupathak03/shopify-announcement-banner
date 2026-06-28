@@ -2,6 +2,8 @@
 
 MERN-style Shopify app for managing a store-wide announcement banner. The embedded Shopify Admin app saves announcement text to MongoDB for audit history, syncs the live value to a shop metafield with the Admin GraphQL API, and displays it on the storefront through a Theme App Extension app embed block.
 
+Deployed app: https://shopify-announcement-banner-1rs3.onrender.com
+
 
 
 https://github.com/user-attachments/assets/fc204820-f01e-47d2-aa44-90a67f601005
@@ -114,6 +116,5 @@ Important notes:
 - This app is enabled from **App embeds > Announcement Banner**.
 - If the app embed was enabled before a new extension version was deployed, toggle the app embed off, save, toggle it on, and save again.
 - For the main theme, deploy/release the theme app extension with `shopify app deploy --allow-updates`. The local `shopify app dev` preview can use a separate development host theme.
-
 
 

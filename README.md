@@ -2,6 +2,12 @@
 
 MERN-style Shopify app for managing a store-wide announcement banner. The embedded Shopify Admin app saves announcement text to MongoDB for audit history, syncs the live value to a shop metafield with the Admin GraphQL API, and displays it on the storefront through a Theme App Extension app embed block.
 
+
+
+https://github.com/user-attachments/assets/fc204820-f01e-47d2-aa44-90a67f601005
+
+
+
 ## Architecture
 
 Admin dashboard -> App Bridge authenticated fetch -> Express API -> MongoDB audit record -> Shopify shop metafield -> Liquid app embed -> storefront banner

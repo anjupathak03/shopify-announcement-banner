@@ -2,6 +2,11 @@
 
 A MERN-style Shopify app for managing a store-wide announcement banner from Shopify Admin. The app stores an audit history in MongoDB, syncs the active announcement to a Shopify shop metafield, and renders the banner on the storefront through a Theme App Extension app embed.
 
+
+https://github.com/user-attachments/assets/7a9e6b87-ab3a-47e4-bd16-c296f89a7929
+
+
+
 ## Overview
 
 The project demonstrates the required Shopify data flow:
@@ -28,7 +33,6 @@ The Render URL hosts the production backend and frontend assets. The merchant da
 
 The demo shows the full flow: saving an announcement from the embedded Shopify Admin app, verifying the MongoDB audit record, and displaying the synced message in the Online Store preview.
 
-Demo video: `https://github.com/user-attachments/assets/fc204820-f01e-47d2-aa44-90a67f601005`
 
 ## Features
 
@@ -191,12 +195,7 @@ A complete demo should show:
 5. Open the Shopify theme editor and enable the **Announcement Banner** app embed.
 6. Show the saved message rendering in the Online Store preview.
 
-## Troubleshooting
 
-- The direct Render URL is a deployment host/status page, not the merchant save flow. Announcement saves require the embedded Shopify Admin context.
-- If Shopify Admin reports a cookie-related load error, allow third-party cookies for Shopify and the Render domain or use a browser profile where Shopify embedded apps are allowed.
-- If the storefront preview does not show the banner, toggle **Announcement Banner** off and on in **App embeds**, then save the theme.
-- If a development preview appears stale, use **Clean dev preview** in the Shopify CLI Dev Console and refresh the Shopify Admin page.
 
 ## Scripts
 
